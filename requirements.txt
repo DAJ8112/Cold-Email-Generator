@@ -1,0 +1,10 @@
+jupyter
+ipykernel
+langchain
+langchain-groq
+chromadb
+langchain_community
+pandas
+uuid
+streamlit
+python-dotenv
