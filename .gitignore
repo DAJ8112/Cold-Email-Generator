@@ -5,3 +5,4 @@ app/.env
 coldEmailGen
 .ipynb_checkpoints
 app/__pycache__
+chromadbTest.ipynb
