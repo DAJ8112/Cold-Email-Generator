@@ -1,13 +1,19 @@
+import os
 import pandas as pd
 import chromadb
 import uuid
 
+_DIR = os.path.dirname(os.path.abspath(__file__))
+
 
 class Portfolio:
-    def __init__(self, file_path="app/resource/portfolio.csv"):
+    def __init__(self, file_path=None):
+        if file_path is None:
+            file_path = os.path.join(_DIR, "resource", "portfolio.csv")
         self.file_path = file_path
         self.data = pd.read_csv(file_path)
-        self.chroma_client = chromadb.PersistentClient('vectorstore')
+        vectorstore_path = os.path.join(_DIR, "..", "vectorstore")
+        self.chroma_client = chromadb.PersistentClient(vectorstore_path)
         self.collection = self.chroma_client.get_or_create_collection(name="portfolio")
 
     def load_portfolio(self):

@@ -1,15 +1,12 @@
-import os
 from langchain_groq import ChatGroq
 from langchain_core.prompts import PromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.exceptions import OutputParserException
-from dotenv import load_dotenv
 
-load_dotenv()
 
 class Chain:
-    def __init__(self):
-        self.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key = os.getenv("groq_api_key"))
+    def __init__(self, api_key):
+        self.llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=api_key)
 
     def extract_jobs(self, cleaned_text):
         extract_prompt = PromptTemplate.from_template(
@@ -57,4 +54,4 @@ class Chain:
         return res.content
     
 if __name__ == "__main__":
-    print(os.getenv("groq_api_key"))
+    pass
